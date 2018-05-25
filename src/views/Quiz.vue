@@ -15,7 +15,24 @@
             </li>
         </ul>
 
-        <router-link tag="button" class="btn btn-primary btn-block" to="/results">View Your Results</router-link>
+
+        <div class="fixed-bottom py-3 border-top bg-white">
+            <div class="container-fluid">
+                <div class="progress">
+                    <div class="progress-bar"
+                         :class="{ 'bg-success': completion === 100 }"
+                         role="progressbar"
+                         :aria-valuenow="completion"
+                         :style="{width: `${completion}%`}"
+                         aria-valuemin="0"
+                         aria-valuemax="100"></div>
+                </div>
+
+                <router-link v-if="completion == 100" tag="button" class="btn btn-primary btn-block mt-3" to="/results">
+                    View Your Results
+                </router-link>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -34,7 +51,7 @@
 
     .active,
     .active:active,
-    .active:hover{
+    .active:hover {
         color: rgb(16, 151, 184);
     }
 </style>
@@ -45,7 +62,14 @@
     computed: {
       questions() {
         return this.$store.state.questions;
-      }
+      },
+      completion() {
+        return this.$store.state.questions.filter(question => {
+          return question.answers.filter(answer => {
+            return answer.chosen === true;
+          }).length;
+        }).length / this.$store.state.questions.length * 100;
+      },
     },
     methods: {
       answerQuestion(id, subScale, weight) {
