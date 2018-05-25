@@ -2,10 +2,11 @@
     <div class="container-fluid">
         <ul class="list-unstyled">
             <li v-for="question in questions" :key="`question-${question.id}`" class="border-bottom mt-3 pb-3">
-                <h6>{{ question.question }}</h6>
+                <h5>{{ question.question }}</h5>
                 <!--<small class="text-muted">{{ question.subScale }}</small>-->
                 <div v-for="answer in question.answers" :key="answer.answer">
-                    <a :class="answer.chosen ? 'text-info' : ''"
+                    <a class="answer my-4 d-block"
+                       :class="answer.chosen ? 'active' : ''"
                        @click.prevent="answerQuestion(question.id, question.subScale, answer.weight)"
                        href="#">
                         <i>{{ answer.answer }}</i>
@@ -23,8 +24,18 @@
         color: #2c3e50;
     }
 
-    .text-info {
+    .answer,
+    .answer:active,
+    .answer:hover {
+        text-decoration: none;
+        transition: color .25s;
+        color: rgb(108, 117, 125);
+        font-weight: 400;
+    }
+
+    .active {
         font-weight: bold;
+        color: rgb(16, 151, 184);
     }
 </style>
 

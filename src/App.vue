@@ -1,12 +1,12 @@
 <template>
-    <div id="app" align-items-center>
+    <div id="app">
         <header class="bg-light py-3 container-fluid d-flex flex-row justify-content-between align-items-center">
-            <h6 class="text-muted m-0">Learned Optimism Test</h6>
+            <h6 class="text-muted m-0">Learned Optimism</h6>
 
             <nav class="list-inline">
-                <router-link class="btn btn-link" to="/">Quiz</router-link>
-                <router-link class="btn btn-link" to="/results">Results</router-link>
-                <router-link class="btn btn-link" to="/about">About</router-link>
+                <router-link class="px-2" to="/">Quiz</router-link>
+                <router-link class="px-2" to="/results">Results</router-link>
+                <router-link class="px-2" to="/about">About</router-link>
             </nav>
         </header>
 
