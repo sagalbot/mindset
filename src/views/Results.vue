@@ -1,8 +1,8 @@
 <template>
     <div>
 
-        <div v-for="(chunk, $index) in results" :key="$index" class="row py-5 border-bottom">
-            <div class="col px-5" v-for="result in chunk" :key="result.subClass">
+        <div v-for="(chunk, $index) in results" :key="$index" class="py-5">
+            <div class="text-center" v-for="result in chunk" :key="result.subClass">
                 <h2>{{ result.subClass }}: <strong>{{ result.result }}</strong></h2>
             </div>
         </div>

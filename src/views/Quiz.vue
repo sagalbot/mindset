@@ -28,13 +28,13 @@
     .answer:active,
     .answer:hover {
         text-decoration: none;
-        transition: color .25s;
+        transition: color .025s;
         color: rgb(108, 117, 125);
-        font-weight: 400;
     }
 
-    .active {
-        font-weight: bold;
+    .active,
+    .active:active,
+    .active:hover{
         color: rgb(16, 151, 184);
     }
 </style>
