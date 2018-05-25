@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
 
 Vue.use(Vuex)
 
@@ -833,6 +834,10 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    importState(state, {questions, results}) {
+      state.questions = questions;
+      state.results = results;
+    },
     answer({results}, {id, subScale, weight}) {
       results[subScale][`${subScale}-${id}`] = weight;
     },
@@ -841,5 +846,6 @@ export default new Vuex.Store({
       questions.find(q => q.id === id).answers.find(a => a.weight === weight).chosen = true;
     }
   },
-  actions: {}
+  actions: {},
+  plugins: [(new VuexPersistence({})).plugin]
 })
