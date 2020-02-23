@@ -1,16 +1,17 @@
 <template>
     <div class="container-fluid">
-        <ul class="list-unstyled">
-            <li v-for="question in questions" :key="`question-${question.id}`" class="border-bottom mt-3 pb-3">
+        <ul class="list-unstyled mb-5">
+            <li v-for="question in questions" :key="`question-${question.id}`" class="border-bottom mt-3 pb-1 pt-2">
                 <h5>{{ question.question }}</h5>
                 <!--<small class="text-muted">{{ question.subScale }}</small>-->
                 <div v-for="answer in question.answers" :key="answer.answer">
-                    <a class="answer my-4 d-block"
+                    <label class="answer py-2 my-1 d-block"
                        :class="answer.chosen ? 'active' : ''"
                        @click.prevent="answerQuestion(question.id, question.subScale, answer.weight)"
                        href="#">
+                        <input type="checkbox" class="mr-2" :checked="answer.chosen">
                         <i>{{ answer.answer }}</i>
-                    </a>
+                    </label>
                 </div>
             </li>
         </ul>
@@ -18,7 +19,7 @@
 
         <div class="fixed-bottom py-3 border-top bg-white">
             <div class="container-fluid">
-                <div class="progress">
+                <div v-if="completion != 100" class="progress">
                     <div class="progress-bar"
                          :class="{ 'bg-success': completion === 100 }"
                          role="progressbar"
@@ -28,7 +29,7 @@
                          aria-valuemax="100"></div>
                 </div>
 
-                <router-link v-if="completion == 100" tag="button" class="btn btn-primary btn-block mt-3" to="/results">
+                <router-link v-if="completion == 100" tag="button" class="btn btn-primary btn-block" to="/results">
                     View Your Results
                 </router-link>
             </div>
